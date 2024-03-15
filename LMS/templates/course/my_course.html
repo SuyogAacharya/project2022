@@ -1,0 +1,91 @@
+{% extends 'base2.html' %}
+{% block title %}My Course{% endblock %}
+{% load course_tags %}
+{% block content %}
+    <!-- PAGE TITLE -->
+    <header class="py-8 py-md-11" style="background-image: none;">
+        <div class="container text-center py-xl-2">
+            <h1 class="display-4 fw-semi-bold mb-0">Enrolled Courses</h1>
+           
+        </div>
+        <!-- Img -->
+        <img class="d-none img-fluid" src="...html" alt="...">
+    </header>
+
+    <!-- COURSE LIST -->
+    <div class="container pb-4 pb-xl-7">
+        {% include 'components/msg.html' %}
+        <div class="row">
+            {% for i in course %}
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4 pb-4 pb-md-7" style="padding-right:15px;padding-left:15px;">
+                <!-- Card -->
+                <div class="card border shadow p-2 rounded-lg sk-fade">
+                  <!-- Image -->
+                  <div class="card-zoom position-relative">
+                    <div class="badge-float sk-fade-top top-0 right-0 mt-4 me-4">
+                        <a href="{{i.get_absolute_url}}" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 me-1 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                            <!-- Icon -->
+                            <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Icon Path -->
+                            </svg>
+                        </a>
+                        <a href="{{i.get_absolute_url}}" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                            <!-- Icon -->
+                            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Icon Path -->
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="{{i.get_absolute_url}}" class="card-img sk-thumbnail img-ratio-9 d-block">
+                        <img class="rounded shadow-light-lg" src="{{i.course.featured_image}}" alt="...">
+                    </a>
+                    <span class="badge sk-fade-bottom badge-lg badge-primary badge-pill badge-float bottom-0 left-0 mb-4 ms-4 fw-bold">
+                        <span class="text-white text-uppercase fw-bold font-size-xs">Discount {{i.course.discount}} %</span>
+                    </span>
+                </div>
+    
+                <!-- Footer -->
+                
+                    <!-- Preheading -->
+                    <a href="{{i.get_absolute_url}}"><span class="mb-1 d-inline-block text-gray-800">{{i.course.category.name}}</span></a>
+    
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="{{i.get_absolute_url}}" class="d-block stretched-link">
+                            <h4 class="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{{i.course.title}}
+    
+                            </h4>
+                        </a>
+                        <div class="d-lg-flex align-items-end flex-wrap mb-n1">
+                           
+                        </div>
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Icon Path -->
+                                                </svg>
+                                            </div>
+                                           
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="col-auto px-2 text-right">
+                                <del class="font-size-sm">Rs. {{ i.course.price }}</del>
+                                <ins class="h4 mb-0 d-block mb-lg-n1">Rs. {% discount_calculation i.course.price i.course.discount %}</ins>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
